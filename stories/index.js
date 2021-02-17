@@ -10,9 +10,12 @@ import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewList";
+
 import Appointment from "components/Appointment"
 import Header from "components/Appointment/Header";
 import Show from "components/Appointment/Show";
+import Empty from "components/Appointment/Empty";
+import Confirm from "components/Appointment/Confirm";
 
 
 // stories for Button
@@ -153,5 +156,12 @@ storiesOf("InterviewerList", module)
       interviewer={interviewer}
       onEdit={action("onEdit")}
       onDelete={action("onDelete")}
+    />
+  ))
+  .add("Confirm", () => (
+    <Confirm 
+      message="Delete the appointment?"
+      onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}
     />
   ))
