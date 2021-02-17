@@ -10,7 +10,9 @@ import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewList";
+import Appointment from "components/Appointment"
 
+// stories for Button
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -25,8 +27,8 @@ storiesOf("Button", module)
     <Button disabled onClick={action("button-clicked")}>
       Disabled
     </Button>
-  ));
-
+      ));
+//stories for DayList Item
   storiesOf("DayListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -55,7 +57,7 @@ storiesOf("Button", module)
       spots: 0,
     },
   ];
-
+//stories for DayList
 storiesOf("DayList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -73,6 +75,7 @@ const interviewer = {
   name: "Sylvia Palmer",
   avatar: "https://i.imgur.com/LpaY82x.png"
 };
+//stories for InterviewerListItem
   
 storiesOf("InterviewerListItem", module)
   .addParameters({
@@ -110,7 +113,7 @@ const interviewers = [
   { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
   { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
 ];
-
+//stories for InterviewerList
 storiesOf("InterviewerList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -126,5 +129,16 @@ storiesOf("InterviewerList", module)
       interviewers={interviewers}
       value={3}
       onChange={action("onChange")}
+    />
+  ))
+  //stories for Appointment
+  storiesOf("Appointment", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+  })
+  .add("Appointment", () => <Appointment />)
+  .add("Appointment with Time", () => (
+    <Appointment 
+      time="12pm"
     />
   ))
