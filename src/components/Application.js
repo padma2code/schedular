@@ -3,6 +3,7 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 import axios from "axios";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
+
 import "components/Application.scss";
 
 export default function Application(props) {
@@ -30,7 +31,10 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    setState({ ...state, appointments });
+    return axios
+      .put(`/api/appointments/${id}`, { interview })
+      .then(() => setState({ ...state, appointments }))
+      .catch(err => console.log(err));
   }
 
   const schedule = appointments.map((appointment) => {
