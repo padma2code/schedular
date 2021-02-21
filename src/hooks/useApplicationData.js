@@ -3,13 +3,6 @@ import axios from "axios";
 
 export default function useApplicationData(initial) {
   
-  // const [state, setState] = useState({
-  //   day: "Monday",
-  //   days: [],
-  //   appointments: {},
-  //   interviewers: {}
-  // });
-
   const SET_DAY = "SET_DAY";
   const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
   const SET_INTERVIEW = "SET_INTERVIEW";
@@ -24,7 +17,21 @@ export default function useApplicationData(initial) {
         return { ...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers }
       }
       case SET_INTERVIEW: {
-        return { ...state, appointments: action.appointments}
+        const dayData = state.days.filter(d => d.name === state.day)
+
+        const spotsCount = (day) => {
+          let result = 0;
+          day.appointments.forEach(appointment => {
+            (!action.appointments[appointment].interview && result++)
+          })
+          return result;
+        }
+
+        const updatedDay = { ...dayData[0], spots: spotsCount(dayData[0])};
+        const dayId = state.days.indexOf(dayData[0]);
+        const days = [...state.days.slice(0, dayId),  updatedDay, ...state.days.slice( dayId + 1, state.days.length)];
+
+        return { ...state, appointments: action.appointments, days };
       }
       default: {
         throw new Error(
@@ -54,6 +61,7 @@ export default function useApplicationData(initial) {
       [id]: appointment
     };
 
+
     return axios
       .put(`/api/appointments/${id}`, { interview })
       .then(() => dispatch({ type: SET_INTERVIEW, appointments }));
@@ -82,7 +90,6 @@ export default function useApplicationData(initial) {
 
     Promise.all([promiseDays, promiseAppointments, promiseInterviewers])
       .then(all => {
-        // setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data,interviewers: all[2].data  }))
         dispatch({ type: SET_APPLICATION_DATA, days: all[0].data, appointments: all[1].data, interviewers: all[2].data  })
       })
   }, [])
