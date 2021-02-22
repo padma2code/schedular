@@ -17,6 +17,7 @@ export default function useApplicationData(initial) {
         return { ...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers }
       }
       case SET_INTERVIEW: {
+        // Update the number of spots remaining
         const dayData = state.days.filter(d => d.name === state.day)
 
         const spotsCount = (day) => {
@@ -95,5 +96,4 @@ export default function useApplicationData(initial) {
   }, [])
 
   return { state, setDay, bookInterview, cancelInterview };
-
 }
