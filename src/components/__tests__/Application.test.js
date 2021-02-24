@@ -21,7 +21,7 @@ describe("Application", () => {
   });
 
   it("load data, books an interview and reduces the spots remaining for the first day by 1", async () => {
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     
     await waitForElement(() => getByText(container, "Archie Cohen"));
     const appointment = getAllByTestId(container, "appointment")[0];
@@ -38,7 +38,9 @@ describe("Application", () => {
     await waitForElementToBeRemoved(() => getByText(appointment, "Saving"));
     expect(getByText(appointment, "Lydia Miller-Jones")).toBeInTheDocument();
     expect(getByAltText(appointment, "Edit")).toBeInTheDocument();
-    debug();
+
+    const day = getAllByTestId(container, "day-item").find(day => getByText(day, "Monday"));
+    expect(getByText(day, "no spots remaining")).toBeInTheDocument();
     
   });
 
