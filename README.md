@@ -50,8 +50,8 @@ Delete an Interview
 
 ## App Screenshots
 
-!["Home Screen - Regular appointments"](https://github.com/padma2code/schedular/tree/master/Images/homescreen.png?raw=true)
+!["Home Screen - Regular appointments"](https://github.com/padma2code/schedular/blob/master/Images/Homescreen.png?raw=true)
 
-!["Blank Student Name - Error"](https://github.com/padma2code/schedular/tree/master/Images/StudentNameBlankError.png?raw=true)
+!["Blank Student Name - Error"](https://github.com/padma2code/schedular/blob/master/Images/StudentNameBlankError.png?raw=true)
 
-!["Delete Appointment - Confirmation Screen"](https://github.com/padma2code/schedular/tree/master/Images/DeleteConfirm.png?raw=true)
+!["Delete Appointment - Confirmation Screen"](https://github.com/padma2code/schedular/blob/master/Images/DeleteConfirm.png?raw=true)
