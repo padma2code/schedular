@@ -24,6 +24,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  // Call the bookInterview function in the Application component and wait for it to complete before displaying a new mode
   const save = (name, interviewer) => {
     const interview = {
       student: name,
@@ -39,6 +40,7 @@ export default function Appointment(props) {
       });
   }
 
+  // Call the cancelInterview function in the Application component and wait for it to complete before displaying a new mode
   const deleteAppointment = () => {
     transition(DELETING, true);
     Promise.resolve(props.cancelInterview(props.id))
